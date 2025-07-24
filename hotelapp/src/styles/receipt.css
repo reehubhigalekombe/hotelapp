@@ -1,0 +1,40 @@
+.reciept {
+    padding: 2rem;
+    margin: auto;
+    max-width: 500px;
+    background-color: white;
+}
+.reciept ul {
+    list-style: none;
+    padding: 0;
+}
+.reciept button {
+    padding: 8px;
+    margin-top: 8px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+}
+.reciept button:hover {
+    background-color: black;
+}
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    .reciept, .reciept * {
+        visibility: visible;
+    }
+    .reciept {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+    .reciept button {
+        display: none;
+    }
+}

@@ -1,0 +1,8 @@
+.dash {
+    padding: 1.8rem;
+
+}
+.dash-partition {
+    display: flex;
+    gap: 2.8rem;
+}

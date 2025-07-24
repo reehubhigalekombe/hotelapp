@@ -1,0 +1,14 @@
+.orderlist {
+    flex-grow: 1;
+}
+.orderlist ul {
+    list-style: none;
+    padding: 0;
+}
+.orderlist li {
+    margin-bottom: 12px;
+}
+.orderlink {
+    color: blue;
+    margin-left: 10px;
+}
