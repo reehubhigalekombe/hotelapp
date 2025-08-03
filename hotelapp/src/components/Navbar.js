@@ -1,19 +1,19 @@
-
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import "../styles/dashboard.css";
- import logo from "../assets/logi.jpg"
 function Navbar() {
+  const navbarRef = useRef(null)
   return (
-    <div className="dash">
+    <div className="dash" ref={navbarRef}>
 
-  <img src={logo}  alt="logo"/>
-  <button>Admin</button>
-<Link to="/dash" className="links">DASHBORD</Link>
+  <img src="http://localhost:8001/uploads/logi.jpg"  alt="logo"/>
+  <button><Link to="/admin" style={{textDecoration: "none", color: "black"}}>Admin</Link></button>
+<Link to="/sign" className="links">DASHBORD</Link>
 <Link to="/order"  className="links">MAKE ORDER</Link>
-
-<Link to="/view"  className="links">VIEW ORDER</Link>
-<button>Login</button>
-  <img src={logo}  alt="logo"/>
+<Link to="/list"  className="links">VIEW ORDER</Link>
+<Link to="/food" className="links">ADD FOOD</Link>
+<button>Logout</button>
+  <img src="http://localhost:8001/uploads/logi.jpg"  alt="logo"/>
 </div>
 
 

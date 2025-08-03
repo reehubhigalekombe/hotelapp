@@ -1,0 +1,55 @@
+.admin {
+    width: 100%;
+    height: 90vh;
+     margin-top: var(--navbar-height, 100px);
+     display: flex;
+     flex-direction: row;
+}
+.admin .left {
+    flex: 1;
+    background-image: url("http://localhost:8001/uploads/1754116160853-tea.webp");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+     clip-path: polygon(0 0, 90% 0, 70% 100%, 0% 100%);
+}
+
+.admin .right {
+    flex: 1;
+}
+.admin .right form {
+display: flex;
+flex-direction: column;
+justify-content: center;
+width: 100%;
+gap: 20px;
+
+}
+
+.admin .right .hotelsign {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+     gap: 20px;
+    
+}
+.hotelsign h1, p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.admin .right .hotelsign input {
+    width: 70%;
+    outline: none;
+    cursor: pointer;
+    border-radius: 0px;
+}
+.right form button {
+    width: 20%;
+}
+.remember {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0px 10;
+    gap: 10px;
+}

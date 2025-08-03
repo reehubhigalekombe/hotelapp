@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 import {QRCodeCanvas} from "qrcode.react"
-import logo from "../assets/logi.jpg"
 
 import { useParams } from 'react-router-dom';
 import "../styles/receipt.css";
@@ -24,12 +23,12 @@ function ReceiptPg() {
     <div className='receipt'>
        <div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", margin: "0 2rem", marginBottom: "0px"
        }}>
-       <img src={logo} alt='lohs'  style={{
+       <img src="http://localhost:8001/uploads/logi.jpg" alt='lohs'  style={{
         width: "50px", height: '50px', borderRadius: "50%"
        }} />
         
          <h1>THE ROYAL MAX HOTEL</h1>
-          <img src={logo} alt='lohs'  style={{
+          <img src="http://localhost:8001/uploads/logi.jpg" alt='lohs'  style={{
         width: "50px", height: '50px', borderRadius: "50%"
        }} /></div>
                
@@ -44,22 +43,49 @@ function ReceiptPg() {
         <div className='headi'>
             <span>ITEM</span>
             <span>QTY</span>
-            <span>AMT (Ksh)</span>
+            <span>AMT (Ksh.)</span>
         </div>
         <hr/>
         <ul className='lists'>
-            {order.items.map((item, index) =>(
-                <li key={index} className='listrow'>
+            {order.items.map((item, index) =>{
+              const sub = item.price * item.quantity;
+              const vat = sub * 0.16;
+              const totalPlusVAT = sub +vat;
+              return (
+                  <li key={index} className='listrow'>
                     <span className='name'>{item.name} </span>
                     <span className='quantity'>x {item.quantity} </span>
                     <span className='amount'>{(item.quantity * item.price).toLocaleString()} </span>
                </li>
-            ))}
+       )
+ })}
         </ul>
         <hr/>
-        <div className='total'>
-<strong>Total:</strong>
-<span>{order.totalAmount?.toLocaleString()}</span>
+        <div style={{paddingTop: "2px", marginTop: "2px", fontSize: "14px"}}>
+
+          {(() => {
+            const sub = order.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            const vat  = sub * 0.16
+            const totalAmount = sub + vat;
+            return (
+              <div style={{padding: "4px 0", margin: "4px 0"}}>
+                  <div style={{ display: "flex", justifyContent: "space-between", padding: "2px 0"}}>
+                    <strong>Sub-total:</strong>
+                    <span>Ksh. { sub.toFixed(2)} </span>
+                     </div>
+                  <div style={{ display: "flex", justifyContent: "space-between", padding: '4px 0'}}>
+                         <strong>VAT (16%):</strong>
+                    <span>Ksh. {vat.toFixed(2)} </span>
+                     </div>
+                    <div style={{ display: "flex", justifyContent: "space-between", padding: '2px 0'}}> 
+                           <strong>Total</strong>
+                    <span style={{fontSize: "18px", fontWeight: "bold"}}>Ksh. {totalAmount.toFixed(2)}</span>
+
+                    </div>
+                 </div>
+                 
+            )
+          })()}
         </div>
       <div className='footer'>
         
@@ -79,7 +105,7 @@ function ReceiptPg() {
         <div className='right'> 
 <h3>Thank you for Dining with us.</h3>
 <p><strong>Served by:</strong>{order.waiterName}</p>
-<img src={logo} alt='lohs'  style={{
+<img src="http://localhost:8001/uploads/logi.jpg" alt='lohs'  style={{
         width: "50px", height: '50px', borderRadius: "50%"
        }} />
         </div>

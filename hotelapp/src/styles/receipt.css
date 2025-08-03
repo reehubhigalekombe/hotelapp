@@ -4,6 +4,7 @@
     max-width: 500px;
     background-color: white;
     border: 1px dashed black;
+        margin-top: var(--navbar-height, 100px);
 
 }
 
@@ -104,10 +105,11 @@ hr {
     padding: 5px;
     text-align: center;
 }
-.footer .left {
+.footer .left p {
     text-align: left;
     line-height: 1.2;
     font-weight: bold;
+    font-size: 10px;
 }
 .footer .middle {
     display: flex;
@@ -128,6 +130,13 @@ hr {
     border-radius: 50%;
     margin-top: 5px;
 }
+.align {
+    display: flex;
+    flex-direction: row;
+ 
+
+}
+
 @media print {
     body * {
         visibility: hidden;

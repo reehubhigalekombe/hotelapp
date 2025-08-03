@@ -2,15 +2,28 @@ import {useState, useEffect} from 'react'
 import "../styles/orderform.css";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import {FaSearch} from "react-icons/fa"
 
 function OrderForm() {
   const [waiterName, setWaiterName] = useState("");
   const[tableNumber, setTableNumber] = useState("");
   const [category, setCategory] = useState("breakfast")
-  const [menu, setMenu] = useState({breakfast: [], lunch:  [], dinner: []})
-  const[items, setItems] = useState([{name: "", quantity: 1, price: 0}]);
+  const [menu, setMenu] = useState({breakfast: [], lunch:  [], dinner: [], drinks: []})
   const [orderItems, setOrderItems] = useState([]);
   const navigate = useNavigate();
+  const[searchItem, setSearchItem] = useState("")
+
+  const filterMenu = searchItem
+  ? [...menu.breakfast, ...menu.lunch, ...menu.dinner, ...menu.drinks].filter(item => 
+    item.name.toLocaleLowerCase().includes(searchItem.toLocaleLowerCase())
+  ) : menu[category]
+  const handleCancelOrder = () => {
+    const confirmCancel = window.confirm("Are you sure you wanna CANCEL the ORDER?");
+    if(!confirmCancel) return;
+    setWaiterName("");
+    setTableNumber("");
+    setOrderItems([])
+  }
 
   useEffect(() => {
     const fetchMenu = async () => {
@@ -71,8 +84,10 @@ const totalAmount = orderItems.reduce((sum, i) => sum + i.price * i.quantity, 0)
     }
   }
   return (
-    <form className='orderform' onSubmit={handleSubmit}>
-      <h2>Place Order</h2>
+    <div className='orderpage'>
+
+<form onSubmit={handleSubmit}>
+      <h2>PLACE ORDER</h2>
       <input
       type='text'
       placeholder='Waiter Name'
@@ -87,8 +102,21 @@ const totalAmount = orderItems.reduce((sum, i) => sum + i.price * i.quantity, 0)
       onChange={(e) => setTableNumber(e.target.value)}
       required
       />
+
+      <div className='searchbar'>
+<input
+type='text'
+value={searchItem}
+placeholder='Search Items'
+onChange={(e) => setSearchItem(e.target.value)}
+style={{width: "80%", borderRadius: "98px"}}
+/>
+<FaSearch
+style={{position: "absolute", right: "73px", top: "40%", transform: "translateY(-50%"}}
+/>
+      </div>
 <div className='table'>
-  {["breakfast", "lunch", "dinner"].map(cat => (
+  {["breakfast", "lunch", "dinner", "drinks"].map(cat => (
     <button key={cat} type='button'
     className={
       category === cat ?  "active" : ""
@@ -102,25 +130,29 @@ const totalAmount = orderItems.reduce((sum, i) => sum + i.price * i.quantity, 0)
 </div>
 
 <div style={{
-  display: 'grid', gridTemplateColumns: "repeat(7, 1fr)",
-  gap: "15px", marginTop: "10px"
+  display: 'grid', gridTemplateColumns: "repeat(3, 1fr)",
+  gap: "1.5rem", marginTop: "10px"
 }}>
 {
-  menu[category].map(item => (
-    <div key={item._id}
-    className='foocrd' 
-    onClick={() => addItem(item)}
-    > 
-    <h3> {item.name}  </h3>
-    <p>KES {item.price}</p>
-      </div>
+  filterMenu .map(item => (
+    <div key={item._id} className='foocrd' onClick={() =>addItem(item)}>
+<img src={`http://localhost:8001${item.image}`} alt={item.name}
+style={{width: "298px", height: "175px", objectFit: "cover", borderRadius: "8px"}}
+/>
+<div style={{display: "flex", justifyContent: "space-between", margin: "0 3rem", fontSize: "18px"}}>
+  <span style={{fontWeight: "bold"}}>{item.name} </span>
+  <span>KES. {item.price}</span>  
+</div>
+
+</div>
+
   ))
 }
 </div>
       {
         orderItems.length > 0 && (
           <div className='select'>
-            <h2>Selected Items</h2>
+            <h2>SELECTED ITEMS</h2>
             <ul>
               {
                 orderItems.map((item, idx) => (
@@ -137,17 +169,25 @@ const totalAmount = orderItems.reduce((sum, i) => sum + i.price * i.quantity, 0)
                 ))
               }
             </ul>
-            <h5>Total: KES {totalAmount}</h5>
-
+            <hr/>
+            <h5>Total: Ksh. {totalAmount}</h5>
+ <hr/>
           </div>
         )
       }
 
-<div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", gap: "1rem"}}>
+<div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", gap: "1rem", width: "18%", marginTop: "2rem"}}>
 <button type='submit'>Submit Order</button>
+<button onClick={handleCancelOrder}  style={{color: "white", backgroundColor: "red"}}>
+  Cancel Order
+</button>
 </div>
 
     </form>
+
+    
+    </div>
+    
   )
 }
 
