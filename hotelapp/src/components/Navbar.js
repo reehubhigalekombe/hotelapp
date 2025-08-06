@@ -12,6 +12,8 @@ function Navbar() {
 <Link to="/order"  className="links">MAKE ORDER</Link>
 <Link to="/list"  className="links">VIEW ORDER</Link>
 <Link to="/food" className="links">ADD FOOD</Link>
+<Link to="/menu" className="links">MENU UPDATE</Link>
+<Link to="/video" className="links">FOOD</Link>
 <button>Logout</button>
   <img src="http://localhost:8001/uploads/logi.jpg"  alt="logo"/>
 </div>

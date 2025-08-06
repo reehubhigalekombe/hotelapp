@@ -87,8 +87,18 @@ function ReceiptPg() {
             )
           })()}
         </div>
-      <div className='footer'>
+        <hr style={{marginBottom: "5px"}}/>
+            <div style={{display: 'flex', justifyContent: "space-between", marginTop: "0px", paddingTop: "0px"}}>
+              <div><p>Pay Via MPESA </p></div>
+                  <div className='divide'></div>
+                       <div><p>Paybill :  <strong>0670118</strong></p></div>
+                            <div className='divide'></div>
+                            <div style={{marginBottom: "0px"}}><p>Account No:  <strong>Your Name</strong></p></div>
         
+        </div>
+       
+      <div className='footer'>
+      
   <div className='left'> 
     <p>Royal Max Hotel</p>
        <p>Your Comfort , our priority</p>
@@ -98,13 +108,13 @@ function ReceiptPg() {
         </div>
 
           <div className='middle'> 
-<h3> Scan me for feedback</h3>
+<h3 > Scan me for feedback</h3>
 <QRCodeCanvas value="https://drive.google.com/file/d/1gvRSDD0_4-mJFPtoQo_i6EMM1J9TtKWy/view?usp=sharing" size={80}/>
         </div>
 
         <div className='right'> 
 <h3>Thank you for Dining with us.</h3>
-<p><strong>Served by:</strong>{order.waiterName}</p>
+<p style={{marginTop: "5px", fontSize: "14px", marginBottom: "5px"}}><strong>Served by:</strong>{order.waiterName}</p>
 <img src="http://localhost:8001/uploads/logi.jpg" alt='lohs'  style={{
         width: "50px", height: '50px', borderRadius: "50%"
        }} />

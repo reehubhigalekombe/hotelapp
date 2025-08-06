@@ -5,6 +5,9 @@
     background-color: white;
     border: 1px dashed black;
         margin-top: var(--navbar-height, 100px);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
 
 }
 

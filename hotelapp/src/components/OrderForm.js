@@ -85,9 +85,9 @@ const totalAmount = orderItems.reduce((sum, i) => sum + i.price * i.quantity, 0)
   }
   return (
     <div className='orderpage'>
-
+ 
 <form onSubmit={handleSubmit}>
-      <h2>PLACE ORDER</h2>
+       <h2>PLACE ORDER</h2>
       <input
       type='text'
       placeholder='Waiter Name'

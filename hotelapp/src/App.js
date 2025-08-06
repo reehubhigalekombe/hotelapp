@@ -3,9 +3,11 @@ import Navbar from "./components/Navbar";
 import ReceiptPg from "./pages/ReceiptPg";
 import OrderForm from "./components/OrderForm";
 import OrderList from "./components/OrderList";
-import "./styles/app.css"
+import "./styles/app.css";
+import Menu from "./pages/Menu";
 import FoodItems from "./pages/FoodItems";
-import Signin from "./pages/Signin"
+import Signin from "./pages/Signin";
+import Food from "./pages/Food"
 
 
 import Admin from "./pages/Admin";
@@ -23,6 +25,8 @@ function App() {
         <Route path="/food"  element={<FoodItems/>} />
         <Route path="/admin" element={<Admin/>} />
         <Route  path="/sign"  element={<Signin/>} />
+        <Route path="/menu"  element={<Menu/>}/>
+          <Route path="/video"  element={<Food/>}/>
       </Routes>
      </Router>
   );

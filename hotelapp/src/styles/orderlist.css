@@ -3,6 +3,7 @@
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
     max-width: 900px;
+
     margin: auto;
     padding: 1.8rem;
         margin-top: var(--navbar-height, 100px);
@@ -12,6 +13,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
+
 }
 .orderlist li {
     margin-bottom: 12px;
@@ -21,7 +23,7 @@
     justify-content: space-between;
     display: flex;
     border-radius: 8px;
-    line-height: 2;
+
  
 }
 .orderlink {
